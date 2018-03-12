@@ -1,5 +1,5 @@
 FROM scratch
-ADD ubuntu-xenial-core-cloudimg-root.tar.gz /
+ADD ubuntu-bionic-core-cloudimg-root.tar.gz /
 
 # a few minor docker-specific tweaks
 # see https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap
@@ -35,7 +35,6 @@ RUN set -xe \
 # delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
 # this forces "apt-get update" in dependent images, which is also good
-# (see also https://bugs.launchpad.net/cloud-images/+bug/1699913)
 
 # enable the universe
 RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
